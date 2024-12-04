@@ -52,9 +52,11 @@
   </div>
 
   <script>
+    const esp8266_ip = '192.168.1.100'; // Cseréld ki az ESP8266 IP-címére
+
     async function controlLED(led, state) {
       try {
-        const response = await fetch(`/led${led}/${state}`);
+        const response = await fetch(`http://${esp8266_ip}/led${led}/${state}`);
         const result = await response.text();
         alert(result);
       } catch (error) {
