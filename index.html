@@ -59,7 +59,8 @@
     const response = await fetch(`http://${ip}/led${led}/${state}`, {
       method: 'GET',
       headers: {
-        'Access-Control-Allow-Origin': '*'  // CORS fejlécek beállítása a kéréshez
+        'Access-Control-Allow-Origin': '*', 
+        'LED': {state} 
       }
     });
     const result = await response.text();
