@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP8266 LED Vezérlés</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      background: #007bff;
+      color: #fff;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ESP8266 LED Vezérlés</h1>
+  </header>
+  <div class="container">
+    <h2>LED-ek vezérlése</h2>
+    <button onclick="controlLED(1, 'on')">LED 1 Bekapcsolása</button>
+    <button onclick="controlLED(1, 'off')">LED 1 Kikapcsolása</button>
+    <button onclick="controlLED(2, 'on')">LED 2 Bekapcsolása</button>
+    <button onclick="controlLED(2, 'off')">LED 2 Kikapcsolása</button>
+  </div>
+
+  <script>
+    async function controlLED(led, state) {
+      try {
+        const response = await fetch(`/led${led}/${state}`);
+        const result = await response.text();
+        alert(result);
+      } catch (error) {
+        console.error("Hiba történt a vezérlés során:", error);
+      }
+    }
+  </script>
+</body>
+</html>
